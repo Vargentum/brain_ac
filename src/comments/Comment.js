@@ -6,11 +6,21 @@ class Comment extends React.Component {
   }
 
   render() {
-    const {text} = this.props
+    const {text, onSelect, isSelected, id} = this.props
+    const style = isSelected ? {color: "red"} : null
+    console.log(isSelected)
 
     return (
-      <article>{text}</article>
+      <article style={style}>
+        {text}
+        <button onClick={this.handleSelect(id)}>Select</button>
+      </article>
     )
+  }
+
+  handleSelect = (id) => (ev) => {
+    ev.preventDefault()
+    this.props.onSelect(id)
   }
 }
 

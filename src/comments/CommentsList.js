@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import Comment from "./Comment";
+import expandedList from '../HOC/expandedList'
 
 class CommentsList extends React.Component {
   static propTypes = {
@@ -7,12 +8,24 @@ class CommentsList extends React.Component {
   }
 
   render() {
-    const {comments} = this.props
+    const {
+      comments,
+      onExpand,
+      expandedItemId
+
+    } = this.props
 
     return (
       <ul>
         {comments.length ?
-          comments.map(({id, ...rest}) => <li key={id}><Comment {...rest}/></li>)
+          comments.map(({id, ...rest}) => 
+            <li key={id}>
+              <Comment {...rest}
+                       id={id}
+                       onSelect={onExpand}
+                       isSelected={expandedItemId === id}/>
+            </li>
+          )
           : 
           <li>No comments</li>
         }
@@ -21,4 +34,4 @@ class CommentsList extends React.Component {
   }
 }
 
-export default CommentsList;
+export default expandedList(CommentsList);
