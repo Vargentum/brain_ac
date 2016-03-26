@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
-
-export default class SimpleComponent extends Component{
-
-  render() {
-    return <div>Hello world!!!</div>
-  }
+class SimpleComponent extends Component {
+    render() {
+        return <h1>Hello world!!!</h1>
+    }
 }
+
+export default SimpleComponent
