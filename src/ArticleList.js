@@ -10,15 +10,17 @@ class ArticleList extends Component {
     }
 
     state = {
-        selected: {}
+        selected: {},
+        expandedArticleId: null
     }
 
     render() {
         const articleComponents = this.props.articles.map((article, index) =>
             <li key={index}>
                 <Article article={article}
-                         onClick={this.selectArticle(article.id)}
-                         isSelected={this.state.selected[article.id]} />
+                         onExpand={this.handleArticleExpand}
+                         isExpanded={this.state.expandedArticleId === article.id}
+                         onClick={this.selectArticle(article.id)} />
             </li>
         )
         return (
@@ -35,9 +37,12 @@ class ArticleList extends Component {
         })
     }
 
-    componentDidMount() {
-        
+    handleArticleExpand = (id) => {
+        this.setState({
+            expandedArticleId : id !== this.state.expandedArticleId ? id : null
+        });
     }
+
 }
 
 export default ArticleList

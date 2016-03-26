@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Body from './Body'
 import CommentsList from './comments/CommentsList'
-import toggleOpen from './HOC/toggleOpen'
 
 class Article extends Component {
   static propTypes = {
@@ -17,23 +16,26 @@ class Article extends Component {
 
     render() {
         const {
-          article : { title, text, comments},
+          article : { title, id, text, comments},
           isOpen,
           toggleOpen, 
           isSelected,
+          onExpand,
+          isExpanded
 
         } = this.props
 
         const style = isSelected ? {color: 'red'} : null
         return (
             <div style={style}>
-              <h3 onClick={toggleOpen}>
+              <h3>
                 {title}
-                <button onClick={toggleOpen}>Read More</button>
+                <hr />
+                <button onClick={this.handleExpand(id)}>Read More</button>
               </h3>
-              {isOpen ?
+              {isExpanded ?
                 <div>
-                  <Body text={text} isOpen = {isOpen}/>
+                  <Body text={text}/>
                   <CommentsList comments={comments || []} />
                 </div>
                 : null
@@ -42,10 +44,12 @@ class Article extends Component {
         )
     }
 
-    handleClick = (ev) => {
+    handleExpand = (id) => (ev) => {
         ev.preventDefault()
-        this.props.onClick()
+        this.props.onExpand(id)
     }
+
+
 }
 
-export default toggleOpen(Article)
+export default Article
