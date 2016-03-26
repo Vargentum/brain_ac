@@ -4,6 +4,16 @@ import CommentsList from './comments/CommentsList'
 import toggleOpen from './HOC/toggleOpen'
 
 class Article extends Component {
+  static propTypes = {
+    article: PropTypes.shape({
+      title: PropTypes.string,
+      text: PropTypes.string,
+      comments: PropTypes.array
+    }),
+    isOpen: PropTypes.bool,
+    toggleOpen: PropTypes.func,
+    isSelected: PropTypes.bool
+  }
 
     render() {
         const {
