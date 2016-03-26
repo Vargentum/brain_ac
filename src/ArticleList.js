@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Article from './Article'
 import JqueryComponent from './JqueryComponent'
 import { findDOMNode } from 'react-dom'
+import expandedList from './HOC/expandedList'
 
 class ArticleList extends Component {
 
@@ -10,16 +11,15 @@ class ArticleList extends Component {
     }
 
     state = {
-        selected: {},
-        expandedArticleId: null
+        selected: {}
     }
 
     render() {
         const articleComponents = this.props.articles.map((article, index) =>
             <li key={index}>
                 <Article article={article}
-                         onExpand={this.handleArticleExpand}
-                         isExpanded={this.state.expandedArticleId === article.id}
+                         onExpand={this.props.onExpand}
+                         isExpanded={this.props.expandedItemId === article.id}
                          onClick={this.selectArticle(article.id)} />
             </li>
         )
@@ -37,12 +37,6 @@ class ArticleList extends Component {
         })
     }
 
-    handleArticleExpand = (id) => {
-        this.setState({
-            expandedArticleId : id !== this.state.expandedArticleId ? id : null
-        });
-    }
-
 }
 
-export default ArticleList
+export default expandedList(ArticleList)

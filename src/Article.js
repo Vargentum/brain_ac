@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Body from './Body'
 import CommentsList from './comments/CommentsList'
+import toggleOpen from './HOC/toggleOpen'
 
 class Article extends Component {
   static propTypes = {
