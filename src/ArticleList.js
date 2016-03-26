@@ -16,12 +16,11 @@ class ArticleList extends Component {
     render() {
         const articleComponents = this.props.articles.map((article, index) =>
             <li key={index}>
-                <Article article = {article}
-                         onClick = {this.selectArticle(article.id)}
+                <Article article={article}
+                         onClick={this.selectArticle(article.id)}
                          isSelected={this.state.selected[article.id]} />
             </li>
         )
-        console.log('---', this.state);
         return (
             <div>
                 <ul>{articleComponents}</ul>
@@ -37,7 +36,7 @@ class ArticleList extends Component {
     }
 
     componentDidMount() {
-        console.log('---', 123, findDOMNode(this.refs.customComponent));
+        
     }
 }
 
