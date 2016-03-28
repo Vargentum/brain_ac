@@ -2,17 +2,29 @@ import React, { Component, PropTypes } from 'react'
 import Article from './Article'
 import JqueryComponent from './JqueryComponent'
 import { findDOMNode } from 'react-dom'
-import expandedList from './HOC/expandedList'
 
 class ArticleList extends Component {
 
+/*
     static propTypes = {
         articles: PropTypes.array.isRequired
     }
+*/
 
     state = {
         selected: {}
     }
+
+/*
+    constructor(props) {
+        super(props)
+        this.state = {
+            selected: {
+                [props.articles[0]]: true
+            }
+        }
+    }
+*/
 
     render() {
         const articleComponents = this.props.articles.map((article, index) =>
@@ -37,6 +49,17 @@ class ArticleList extends Component {
         })
     }
 
+    componentDidMount() {
+        //console.log('---', 123, findDOMNode(this.refs.customComponent));
+    }
 }
 
-export default expandedList(ArticleList)
+ArticleList.propTypes = {
+    articles: PropTypes.array.isRequired,
+    options: PropTypes.shape({
+        selected: PropTypes.object.isRequired,
+        color: PropTypes.string.isRequired
+    })
+}
+
+export default ArticleList
