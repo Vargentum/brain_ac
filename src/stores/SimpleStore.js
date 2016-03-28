@@ -1,9 +1,9 @@
 import {EventEmitter} from "events"
 
 export default class SimpleStore extends EventEmitter {
-  constructor(items) {
+  constructor(initState) {
     super()
-    this.__items = items
+    if (initState) this.__items = initState.forEach(this.__add)
   }
 
   emitUpdates() {
@@ -19,14 +19,14 @@ export default class SimpleStore extends EventEmitter {
   }
 
   getAll() {
-    return this.__items.slice()  //return new instance to avoid direct access
+    return Object.keys(this.__items).map(id => this.__items[id])
   }
 
-  __add(article) {
-    this.__items.push(article)
+  __add(item) {
+    this.__items[item.id] = item
   }
 
   __delete(id) {
-    this.__items = this.__items.filter(a => a.id !== id)
+    delete this.__items[id]
   }
 }
