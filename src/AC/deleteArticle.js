@@ -7,7 +7,6 @@ const deleteArticle = (id) => {
       id: id
     }
   })
-  console.log(dispatcher, 'dispatched')
 }
 
 export default deleteArticle
