@@ -1,30 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import Article from './Article'
-import JqueryComponent from './JqueryComponent'
-import { findDOMNode } from 'react-dom'
 
 class ArticleList extends Component {
-
-/*
-    static propTypes = {
-        articles: PropTypes.array.isRequired
-    }
-*/
 
     state = {
         selected: {}
     }
 
-/*
-    constructor(props) {
-        super(props)
-        this.state = {
-            selected: {
-                [props.articles[0]]: true
-            }
-        }
-    }
-*/
 
     render() {
         const articleComponents = this.props.articles.map((article, index) =>
@@ -38,7 +20,6 @@ class ArticleList extends Component {
         return (
             <div>
                 <ul>{articleComponents}</ul>
-                <JqueryComponent ref = "customComponent" />
             </div>
         )
     }
@@ -49,9 +30,6 @@ class ArticleList extends Component {
         })
     }
 
-    componentDidMount() {
-        //console.log('---', 123, findDOMNode(this.refs.customComponent));
-    }
 }
 
 ArticleList.propTypes = {
