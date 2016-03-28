@@ -6,7 +6,7 @@ export default class SimpleStore extends EventEmitter {
     super()
     this.__stores = stores
     this.__items = {}
-    if (initState) initState.forEach(this.__add.bind(this))
+    if (initState) initState.forEach(this.__add)
   }
 
   emitUpdates() {
@@ -34,7 +34,7 @@ export default class SimpleStore extends EventEmitter {
   }
 
   __add = (item) => {
-    this.__items[item.id] = new DataModel(this.__stores, item)
+    this.__items[item.id] = new DataModel(this, item)
   }
 
   __delete(id) {

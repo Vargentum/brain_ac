@@ -16,13 +16,14 @@ class Article extends Component {
     render() {
         const {article, isOpen, toggleOpen, isSelected} = this.props
         const comments = article.getRelated('comments')
-        console.log(comments)
         const { title, id, text } = article
         const style = isSelected ? {color: 'red'} : null
         return (
             <div style = {style}>
-                <h3 onClick = {toggleOpen}>{title}</h3>
-                <a href="#" onClick={this.handleDelete(id)}>Delete article</a>
+                <h3>{title}</h3>
+                <a href="#"  onClick={toggleOpen}>Expand</a>
+                &nbsp;
+                <a href="#" onClick={this.handleDelete(id)}>Delete</a>
                 <Body text = {text} isOpen = {isOpen} comments = {comments}/>
             </div>
         )

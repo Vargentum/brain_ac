@@ -1,11 +1,11 @@
 export default class DataModel {
-  constructor(stores, item) {
+  constructor(store, item) {
     Object.assign(this, item)
-    this.__stores = stores
+    this.__store = store
   }
 
   getRelated(type) {
-    const relatedStore = this.__stores[type]
+    const relatedStore = this.__store.getStores()[type]
     if (!this[type] || !relatedStore) return []
     return this[type].map(relatedStore.getById)
   }
