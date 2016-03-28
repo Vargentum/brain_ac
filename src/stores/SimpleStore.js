@@ -1,9 +1,10 @@
 import {EventEmitter} from "events"
+import DataModel from "./DataModel"
 
 export default class SimpleStore extends EventEmitter {
   constructor(stores, initState) {
     super()
-    this.stores = stores
+    this.__stores = stores
     this.__items = {}
     if (initState) initState.forEach(this.__add.bind(this))
   }
@@ -24,9 +25,16 @@ export default class SimpleStore extends EventEmitter {
     return Object.keys(this.__items).map(id => this.__items[id])
   }
 
-  __add(item) {
-    this.__items[item.id] = item
-    console.log(this.__items)
+  getById = (id) => {
+    return this.__items[id]
+  }
+
+  getStores() {
+    return this.__stores
+  }
+
+  __add = (item) => {
+    this.__items[item.id] = new DataModel(this.__stores, item)
   }
 
   __delete(id) {

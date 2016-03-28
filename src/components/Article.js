@@ -14,7 +14,10 @@ class Article extends Component {
     }
 
     render() {
-        const {article : { title, id, text, comments }, isOpen, toggleOpen, isSelected} = this.props
+        const {article, isOpen, toggleOpen, isSelected} = this.props
+        const comments = article.getRelated('comments')
+        console.log(comments)
+        const { title, id, text } = article
         const style = isSelected ? {color: 'red'} : null
         return (
             <div style = {style}>
@@ -38,4 +41,4 @@ class Article extends Component {
 
 }
 
-export default Article
+export default toggleOpen(Article)

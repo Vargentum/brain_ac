@@ -5,11 +5,11 @@ import {articles, comments} from "../fixtures"
 const stores = {}
 
 Object.assign(stores, {
-  articleStore: new ArticleStore(stores, articles),
-  commentsStore: new SimpleStore(stores, comments)
+  articles: new ArticleStore(stores, articles),
+  comments: new SimpleStore(stores, comments)
 })
 
 window.stores = stores //for debugging
 
-export const articleStore = stores.articleStore
-export const commentsStore = stores.commentsStore
+export const articleStore = stores.articles
+export const commentsStore = stores.comments
