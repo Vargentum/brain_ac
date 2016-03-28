@@ -11,18 +11,22 @@ export default class ArticleStore extends EventEmitter {
       switch (type) {
         case "DELETE_ARTICLE": 
           this.__delete(data.id)
-          this.emit('updated')
+          this.emitUpdates()
           break;
       }
     })
   }
 
+  emitUpdates() {
+    this.emit('UPD')
+  }
+
   addUpdateListener(callback) {
-    this.on('updated', callback)
+    this.on('UPD', callback)
   }
 
   removeUpdateListener() {
-    this.off('updated')
+    this.off('UPD')
   }
 
   getAll() {
