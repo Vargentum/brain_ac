@@ -9,6 +9,22 @@ class App extends Component {
     articles: articleStore.getAll()
   }
 
+  componentWillMount() {
+      articleStore.addUpdateListener(this.handleStoreUpdate)
+  }
+
+  componentWillUnmount() {
+      articleStore.removeUpdateListener(this.handleStoreUpdate)   
+  }
+
+
+  handleStoreUpdate = () => {
+    this.setState({
+      articles: articleStore.getAll()
+    })
+  }
+
+
   render() {
     return <ArticleList articles={this.state.articles} />
   }

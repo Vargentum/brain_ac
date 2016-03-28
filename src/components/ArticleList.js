@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import Article from './Article'
+import {articleStore} from "../stores";
+
+
 
 class ArticleList extends Component {
 
@@ -8,6 +11,7 @@ class ArticleList extends Component {
     }
 
 
+    
     render() {
         const articleComponents = this.props.articles.map((article, index) =>
             <li key={index}>
@@ -23,6 +27,8 @@ class ArticleList extends Component {
             </div>
         )
     }
+
+   
 
     selectArticle = (id) => (ev) => {
         this.setState({

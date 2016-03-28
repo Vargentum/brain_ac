@@ -1,6 +1,28 @@
-class ArticleStore  {
+import dispatcher from "../dispatcher/dispatcher";
+import {EventEmitter} from "events";
+
+export default class ArticleStore extends EventEmitter {
   constructor(articles) {
+    super()
     this.__articles = articles
+
+    dispatcher.register(({type, data}) => {
+      console.log(arguments, 'registered')
+      switch (type) {
+        case "DELETE_ARTICLE": 
+          this.__delete(data.id)
+          this.emit('updated')
+          break;
+      }
+    })
+  }
+
+  addUpdateListener(callback) {
+    this.on('updated', callback)
+  }
+
+  removeUpdateListener() {
+    this.off('updated')
   }
 
   getAll() {
@@ -12,7 +34,6 @@ class ArticleStore  {
   }
 
   __delete(id) {
-    return this.__articles.filter(a => a.id !== id)
+    this.__articles = this.__articles.filter(a => a.id !== id)
   }
 }
-export default ArticleStore
