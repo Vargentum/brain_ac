@@ -1,6 +1,15 @@
 import SimpleStore from "./SimpleStore"
 import ArticleStore from "./ArticleStore"
-import {articles as items} from "../fixtures"
+import {articles, comments} from "../fixtures"
 
-export const articleStore = new ArticleStore(items)
-export const simpleStore = new SimpleStore()
+const stores = {}
+
+Object.assign(stores, {
+  articleStore: new ArticleStore(stores, articles),
+  commentsStore: new SimpleStore(stores, comments)
+})
+
+window.stores = stores //for debugging
+
+export const articleStore = stores.articleStore
+export const commentsStore = stores.commentsStore
