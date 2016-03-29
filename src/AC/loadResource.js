@@ -18,10 +18,13 @@ export const loadResource = (resource) => {
       })
     },
     success: (res) => {
-      dispatcher.dispatch({
-        type: `${resource}_${success}`,
-        data: res
-      })
+      setTimeout(() => { //for loading testing
+        dispatcher.dispatch({
+          type: `${resource}_${success}`,
+          data: res
+        })  
+      }, 3000)
+      
     }
   })
 }

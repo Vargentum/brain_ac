@@ -1,17 +1,16 @@
 import React, { Component, PropTypes } from 'react'
 import ArticleList from "./ArticleList"
 import {articleStore} from "../stores"
-import {loadAllArticles} from "../AC/loadResource"
 
 class App extends Component {
 
   static propTypes = {}
   state = {
-    articles: articleStore.getAll()
+    articles: articleStore.getOrLoadAll(),
+    loading: articleStore.loading
   }
 
   componentWillMount() {
-    loadAllArticles()
     articleStore.addUpdateListener(this.handleStoreUpdate)
   }
 
@@ -22,13 +21,22 @@ class App extends Component {
 
   handleStoreUpdate = () => {
     this.setState({
-      articles: articleStore.getAll()
+      articles: articleStore.getOrLoadAll(),
+      loading: articleStore.loading
     })
   }
 
 
   render() {
-    return <ArticleList articles={this.state.articles} />
+    return (
+      <div>
+        {this.state.loading ? 
+          <h2>Loading...</h2>
+          :
+          <ArticleList articles={this.state.articles} />
+        }
+      </div>
+    )
   }
 }
 
