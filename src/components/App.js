@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import ArticleList from "./ArticleList"
 import {articleStore} from "../stores"
+import {loadAllArticles} from "../AC/loadResource"
 
 class App extends Component {
 
@@ -10,11 +11,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-      articleStore.addUpdateListener(this.handleStoreUpdate)
+    loadAllArticles()
+    articleStore.addUpdateListener(this.handleStoreUpdate)
   }
 
   componentWillUnmount() {
-      articleStore.removeUpdateListener(this.handleStoreUpdate)   
+    articleStore.removeUpdateListener(this.handleStoreUpdate)
   }
 
 

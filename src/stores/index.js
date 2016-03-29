@@ -5,7 +5,7 @@ import {articles, comments} from "../fixtures"
 const stores = {}
 
 Object.assign(stores, {
-  articles: new ArticleStore(stores, articles),
+  articles: new ArticleStore(stores),
   comments: new SimpleStore(stores, comments)
 })
 
