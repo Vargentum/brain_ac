@@ -9,6 +9,7 @@ class DataModel {
         if (!this[relation] || !relStore) return []
         return this[relation].map(relStore.getById)
     }
+
 }
 
 export default DataModel

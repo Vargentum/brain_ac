@@ -1,7 +1,7 @@
 import AppDispatcher from '../dispatcher'
 import { DELETE_ARTICLE, LOAD_ALL_ARTICLES, LOAD_ARTICLE, SUCCESS, START, FAIL } from '../AC/constants'
 import SimpleStore from './SimpleStore'
-import { loadAllArticles } from '../AC/articles'
+import { loadAllArticles, loadArticleComments } from '../AC/articles'
 
 class ArticleStore extends SimpleStore {
     constructor(...args) {
@@ -44,6 +44,7 @@ class ArticleStore extends SimpleStore {
         if (!this.loaded && !this.loading) loadAllArticles()
         return this.getAll()
     }
+
 }
 
 export default ArticleStore
