@@ -1,25 +1,28 @@
 import React, { Component, PropTypes } from 'react'
 import toggleOpen from './../HOC/toggleOpen'
 import {commentStore} from "../stores"
+import {loadComments} from '../AC/comments'
 
 
 class CommentList extends Component {
 
     state = {
-        comments: commentStore.getRelatedComments('article', this.props.parentId),
+        comments: [],
         loading: false
     }
 
-    compoentWillMount() {
-        commentStore.addUpdateListener(this.handleStoreUpdate)
+
+    componentWillMount() {
+        commentStore.addChangeListener(this.handleStoreUpdate)
     }
 
-    compoentWillUnmount() {
-        commentStore.removeUpdateListener(this.handleStoreUpdate)
+    componentWillUnmount() {
+        commentStore.removeChangeListener(this.handleStoreUpdate)
     }
 
-    handleStoreUpdate() {
+    handleStoreUpdate = () => {
         console.log('comment updated')
+
         this.setState({
             comments: commentStore.getRelatedComments('article', this.props.parentId),
             loading: commentStore.loading
@@ -30,6 +33,7 @@ class CommentList extends Component {
     handleClick = (ev) => {
         ev.preventDefault()
         this.props.toggleOpen()
+        if (!commentStore.loaded && !commentStore.loading) loadComments()
     }
 
     r_actionLink() {
@@ -40,10 +44,11 @@ class CommentList extends Component {
 
     r_comments() {
         const {comments} = this.state
-        const {isOpen} = this.props
+        const {isOpen, commentsIds} = this.props
         
         if (!isOpen) return null
         const commentComponents = comments.map((comment) => <li key={comment.id}>{comment.text}</li>)
+        debugger
         return (
             <ul>
                 {commentComponents}

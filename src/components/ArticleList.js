@@ -28,7 +28,7 @@ class ArticleList extends Component {
 
     render() {
         const articleComponents = this.props.articles.map((article, index) =>
-            <li key={index}>
+            <li key={article.id}>
                 <Article article = {article}
                          onClick = {this.selectArticle(article.id)}
                          isSelected={this.state.selected[article.id]} />

@@ -29,8 +29,6 @@ class CommentStore extends SimpleStore {
     }
 
     getRelatedComments(type, id) {
-        if (!this.loaded && !this.loading) loadComments()
-
         if (!this.__stores[type] || 
             !this.__stores[type].getById(id) ||
             !this.__stores[type].getById(id)[type]) return []

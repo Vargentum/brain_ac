@@ -6,7 +6,7 @@ function Body(props) {
     const loader = article.loading ? <h3>Loading article...</h3> : null
     return isOpen ? <section>
         {loader || article.text}
-        <CommentList parentId={article.id} comments={comments}/>
+        <CommentList parentId={article.id} commentsIds={comments}/>
     </section> : <noscript />
 }
 
