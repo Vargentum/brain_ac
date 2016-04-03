@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux'
 import counter from './counter'
 
-const appReducer = combineReducers({
+const reducer = combineReducers({
   counter
 })
 
-export default appReducer
+export default reducer
 
 /*
 equal to

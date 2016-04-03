@@ -1,8 +1,7 @@
 import {createStore} from 'redux'
 import appReducer from '../reducer'
 
-const appStore = createStore(appReducer)
+const store = createStore(appReducer)
 
-window.store = appStore
-
-export default appStore
+window.store = store
+export default store
