@@ -3,9 +3,15 @@ import {render} from 'react-dom'
 //import Router from './Router'
 import store from './store'
 import Counter from './components/Counter'
+import increment from './AC/increment'
+
+function dispatchIncrement() {
+  store.dispatch(increment())
+}
 
 function rerender () {
-    render(<Counter {...store.getState()}/>, document.getElementById('container'))
+    render(<Counter {...store.getState()} increment={dispatchIncrement}/>, 
+           document.getElementById('container'))
 }
 
 rerender()

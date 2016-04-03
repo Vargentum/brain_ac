@@ -9,11 +9,15 @@ class Counter extends React.Component {
     
   render() {
     const {
-      counter
+      counter,
+      increment
     } = this.props
 
     return (
-      <div>{counter}</div>
+      <div>
+      <h1>{counter}</h1>
+      <button onClick={increment}>Increment me</button>
+      </div>
     )
   }
 }
