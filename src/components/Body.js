@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react'
-import CommentList from './CommentList'
+//import CommentList from './CommentList'
 
 function Body(props) {
     const { text, isOpen, comments } = props
     return isOpen ? <section>
-        {text}
-        <CommentList comments = {comments}/>
+        {loader || article.text}
     </section> : <noscript />
 }
 
