@@ -11,13 +11,12 @@ const filterExcept = (entities, id)  => entities
   .filter(ent => ent.id !== id)
 
 
-const articles = (state, {data, type}) => {
+export default function articles (state = defaultState, {type, data}) {
   switch (type) {
     case DELETE_ARTICLE: 
       // return update(state, {entities: {$set: filterExcept(state.entities, data.id)}})
       return Object.assign({}, state, {entities: filterExcept(state.entities, data.id)})
-
-    return state
   }
 
+  return state
 }

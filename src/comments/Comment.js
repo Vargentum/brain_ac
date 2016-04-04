@@ -8,7 +8,6 @@ class Comment extends React.Component {
   render() {
     const {text, onSelect, isSelected, id} = this.props
     const style = isSelected ? {color: "red"} : null
-    console.log(isSelected)
 
     return (
       <article style={style}>

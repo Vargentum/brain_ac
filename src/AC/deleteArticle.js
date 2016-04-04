@@ -1,12 +1,8 @@
-import dispatcher from "../dispatcher/dispatcher"
+import {DELETE_ARTICLE} from '../utils/constants'
 
-const deleteArticle = (id) => {
-  dispatcher.dispatch({
-    type: "DELETE_ARTICLE",
-    data: {
-      id: id
-    }
-  })
+export default function deleteArticle(id) {
+  return {
+    type: DELETE_ARTICLE,
+    data: {id}
+  }
 }
-
-export default deleteArticle
