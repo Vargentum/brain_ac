@@ -4,3 +4,5 @@ export const LOADING_STATES = {
   error: "loading_error",
   end: "loading_end"
 }
+
+export const DELETE_ARTICLE = 'delete_article'

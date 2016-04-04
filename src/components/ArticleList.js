@@ -1,49 +1,21 @@
-import React, { Component, PropTypes } from 'react'
-import Article from './Article'
-import {articleStore} from "../stores";
+import React, {PropTypes} from 'react';
 
+class ArticleList extends React.Component {
+  static propTypes = {}
 
-
-class ArticleList extends Component {
-
-    state = {
-        selected: {}
-    }
-
-
+  // state = {}
+  // methodName = () =>
+  //   <div></div>
     
-    render() {
-        const articleComponents = this.props.articles.map((article, index) =>
-            <li key={index}>
-                <Article article={article}
-                         onExpand={this.props.onExpand}
-                         isExpanded={this.props.expandedItemId === article.id}
-                         onClick={this.selectArticle(article.id)} />
-            </li>
-        )
-        return (
-            <div>
-                <ul>{articleComponents}</ul>
-            </div>
-        )
-    }
+  render() {
+    const {
 
-   
+    } = this.props
 
-    selectArticle = (id) => (ev) => {
-        this.setState({
-            selected: {...this.state.selected, [id]: true} //Object.assign({}, this.state.selected, {[id]: true})
-        })
-    }
-
+    return (
+      <div>ArticleList</div>
+    )
+  }
 }
 
-ArticleList.propTypes = {
-    articles: PropTypes.array.isRequired,
-    options: PropTypes.shape({
-        selected: PropTypes.object.isRequired,
-        color: PropTypes.string.isRequired
-    })
-}
-
-export default ArticleList
+export default ArticleList;

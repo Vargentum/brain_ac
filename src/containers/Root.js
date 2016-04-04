@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import Counter from '../components/Counter'
 import Devtools from './Devtools'
-import increment from '../AC/increment'
+import ArticleList from './ArticleList'
 
 
 class Root extends Component {
@@ -17,6 +17,7 @@ class Root extends Component {
       <Provider store={store}>
         <div>
           <Counter />
+          <Ar
           <Devtools />
         </div>
       </Provider>
