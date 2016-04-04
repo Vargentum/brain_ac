@@ -1,10 +1,13 @@
-import {articles as articleList} from '../fixtures'
-import {DELETE_ARTICLE} from '../utils/constants'
+import {DELETE_ARTICLE, LOADING_STATES} from '../utils/constants'
 import update from 'react-addons-update'
 
+const {START, SUCCESS, ERROR} = LOADING_STATES
 
 const defaultState = {
-  entities: articleList
+  loading: false,
+  loaded: false,
+  error: null,
+  entities: []
 }
 
 const filterExcept = (entities, id)  => entities
@@ -14,8 +17,13 @@ const filterExcept = (entities, id)  => entities
 export default function articles (state = defaultState, {type, data}) {
   switch (type) {
     case DELETE_ARTICLE: 
-      // return update(state, {entities: {$set: filterExcept(state.entities, data.id)}})
       return Object.assign({}, state, {entities: filterExcept(state.entities, data.id)})
+
+    case START:
+      return Object.assign({}, state, {loading: true})
+
+    case SUCCESS:
+      return Object.assign({}, state, {loading: false, loaded: true, entities: data.response})
   }
 
   return state

@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux'
 import deleteArticle from "../AC/deleteArticle"
+import loadArticles from "../AC/loadArticles"
 
 class ArticleListUI extends React.Component {
   static propTypes = {}
@@ -23,7 +24,11 @@ class ArticleListUI extends React.Component {
   render() {
     const {
       entities
+      ,loading
+      ,loaded
     } = this.props
+
+    if (loading) return <h3>Loading...</h3>
 
     const list = entities.map(this.r_article)
     return (
@@ -39,6 +44,12 @@ export default ArticleListUI;
 class ArticleList extends React.Component {
   static propTypes = {}
 
+  componentDidMount() {
+    const {loading, loaded, loadArticles} = this.props
+    
+    if (!loading && !loaded) loadArticles()
+  }
+
   render() {
     return (
       <ArticleListUI {...this.props} />
@@ -50,5 +61,5 @@ export default connect((store) => {
   const {articles} = store
   return articles
 }, {
-  deleteArticle
+  deleteArticle, loadArticles
 })(ArticleList);
